@@ -12,12 +12,9 @@ struct GalleryView: View {
     @StateObject var viewModel:GalleryImageVM = GalleryImageVM()
     
     var body: some View {
-        VStack {
-            Text("\(viewModel.galleryImageResponse?.totalResults ??  0)")
-        }
-        .onAppear {
-            viewModel.getGalleryListResponse()
-        }
+        
+        Text("Will Soon integrated image like a gallery application.")
+            .multilineTextAlignment(.center)
     }
 }
 

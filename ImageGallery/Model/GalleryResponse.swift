@@ -39,7 +39,7 @@ struct GalleryListResponse:Codable {
 
 
 
-struct Photo:Codable {
+struct Photo:Codable,Hashable {
     var id:Int
     var width:Int
     var height:Int
