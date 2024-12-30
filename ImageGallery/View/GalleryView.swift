@@ -8,14 +8,16 @@
 import SwiftUI
 
 struct GalleryView: View {
+    
+    @StateObject var viewModel:GalleryImageVM = GalleryImageVM()
+    
     var body: some View {
         VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello,Charles Welcome to the world")
+            Text("\(viewModel.galleryImageResponse?.totalResults ??  0)")
         }
-        .padding()
+        .onAppear {
+            viewModel.getGalleryListResponse()
+        }
     }
 }
 

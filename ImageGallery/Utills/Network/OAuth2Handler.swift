@@ -23,7 +23,7 @@ class OAuth2Handler {
     }
 }
 
-class NetworkInceptor:RequestInterceptor {
+class NetworkInceptor:RequestInterceptor,@unchecked Sendable  {
     public func adapt(_ urlRequest: URLRequest, for session: Alamofire.Session, completion: @escaping (Result<URLRequest, Error>) -> Void) {
         var resurlRequest = urlRequest
         resurlRequest.setValue("FNkUXwPgGX35tAtEcFRjFGYNPxlSq74thfNYDiiZr7M7DOaF6KavLsX4", forHTTPHeaderField: "Authorization")
@@ -40,7 +40,7 @@ class NetworkInceptor:RequestInterceptor {
     }
 }
 
-public class AuthSessionManager:Session{
+public class AuthSessionManager:Session,@unchecked Sendable {
     
     public func request(_ url: URLConvertible, method: HTTPMethod = .get, parameters: Parameters? = nil, encoding: ParameterEncoding = URLEncoding.default, headers: HTTPHeaders? = nil) -> DataRequest {
         var authRequest = super.request(url, method: method, parameters: parameters, encoding: encoding, headers: headers)

@@ -31,6 +31,10 @@ struct GalleryListResponse:Codable {
         self.totalResults = container.safeDecodeValue(forKey: .totalResults)
         self.nextPage = container.safeDecodeValue(forKey: .nextPage)
     }
+    
+    func getPhotos() -> [Photo] {
+        return self.photos
+    }
 }
 
 
