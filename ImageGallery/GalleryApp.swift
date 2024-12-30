@@ -8,7 +8,7 @@
 import SwiftUI
 
 @main
-struct ImageGalleryApp: App {
+struct GalleryApp: App {
     var body: some Scene {
         WindowGroup {
             GalleryView()
