@@ -1,10 +1,7 @@
 //
-//  NetworkManager.swift
-//  OORCabs
+//  Created by Charles on 30/12/24.
 //
-//  Created by Tart Labs on 08/03/19.
-//  Copyright © 2019 Tart Labs. All rights reserved.
-//
+
 
 import Foundation
 import Alamofire
