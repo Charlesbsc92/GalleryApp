@@ -13,12 +13,12 @@ enum APIEndPoint {
     
     static let baseURL = "https://api.pexels.com/v1/"
     
-    case search(qwery:String)
+    case search(qwery:String,page:Int,perPage:Int)
     
     var path:String {
         switch self {
-        case .search(let qwery):
-            return "search?query=\(qwery)"
+        case .search(let qwery,let page,let perPage):
+            return "curated/?page=\(page)&per_page=\(perPage)?query=\(qwery)"
         }
     }
     

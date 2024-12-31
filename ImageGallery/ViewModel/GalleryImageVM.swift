@@ -14,7 +14,7 @@ class GalleryImageVM:ObservableObject {
     
     
     func getGalleryListResponse() {
-        APIManager.shared.getRequest(endPoint: APIEndPoint.search(qwery: "people")) { (result:Result<GalleryListResponse,NetworkError>) in
+        APIManager.shared.getRequest(endPoint: APIEndPoint.search(qwery: "people",page: 1,perPage: 25)) { (result:Result<GalleryListResponse,NetworkError>) in
             switch result {
             case .success(let response):
                 self.galleryPhotos.append(contentsOf: response.getPhotos())
