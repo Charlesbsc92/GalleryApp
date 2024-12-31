@@ -11,10 +11,31 @@ struct GalleryView: View {
     
     @StateObject var viewModel:GalleryImageVM = GalleryImageVM()
     
+    let columns:[GridItem] = [GridItem(.flexible(),spacing: 0),GridItem(.flexible(),spacing: 0),GridItem(.flexible(),spacing: 0)]
+    
     var body: some View {
-        
-        Text("Will Soon integrated image like a gallery application.")
-            .multilineTextAlignment(.center)
+        ScrollView(showsIndicators: false) {
+            LazyVGrid(columns: columns,spacing: 0) {
+                ForEach(0..<viewModel.galleryPhotos.count, id: \.self) { index  in
+                    AsyncImage(url: URL(string: viewModel.galleryPhotos[index].photoSource?.original ?? "")) { image in
+                        image.resizable()
+                    } placeholder: {
+                        ProgressView()
+                    }
+                    .frame(width: self.imageDimension(), height: 150)
+                    .onTapGesture {
+                        print("Tap on the images")
+                    }
+                }
+            }.padding()
+        }
+        .onAppear {
+            viewModel.getGalleryListResponse()
+        }
+    }
+    
+    func imageDimension() -> CGFloat {
+        return UIScreen.main.bounds.width / 3
     }
 }
 

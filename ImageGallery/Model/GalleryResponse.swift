@@ -39,17 +39,19 @@ struct GalleryListResponse:Codable {
 
 
 
-struct Photo:Codable,Hashable {
+struct Photo:Codable {
     var id:Int
     var width:Int
     var height:Int
     var photoUrl:String
+    var photoSource:PhotoSource?
     
     enum Codingkeys:String,CodingKey {
         case id = "id"
         case width = "width"
         case height = "height"
         case url = "url"
+        case photoSource = "src"
     }
     
     init(from decoder: any Decoder) throws {
@@ -58,5 +60,21 @@ struct Photo:Codable,Hashable {
         self.width = container.safeDecodeValue(forKey: .width)
         self.height = container.safeDecodeValue(forKey: .height)
         self.photoUrl = container.safeDecodeValue(forKey: .url)
+        self.photoSource = try container.decodeIfPresent(PhotoSource.self, forKey: .photoSource)
     }
+}
+
+struct PhotoSource:Codable {
+    var original:String
+    
+    enum Codingkeys:String,CodingKey {
+        case original = "original"
+    }
+    
+    init(from decoder: any Decoder) throws {
+        let container = try decoder.container(keyedBy: Codingkeys.self)
+        self.original = container.safeDecodeValue(forKey: .original)
+    }
+    
+    
 }

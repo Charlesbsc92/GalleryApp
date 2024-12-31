@@ -10,14 +10,14 @@ import Foundation
 
 class GalleryImageVM:ObservableObject {
     
-    @Published var galleryImageResponse:GalleryListResponse?
+    @Published var galleryPhotos:[Photo] = []
+    
     
     func getGalleryListResponse() {
         APIManager.shared.getRequest(endPoint: APIEndPoint.search(qwery: "people")) { (result:Result<GalleryListResponse,NetworkError>) in
             switch result {
             case .success(let response):
-                self.galleryImageResponse = response
-                print(self.galleryImageResponse?.totalResults ?? 0)
+                self.galleryPhotos.append(contentsOf: response.getPhotos())
             case .failure(let error):
                 print(error.localizedDescription)
             }
