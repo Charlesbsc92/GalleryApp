@@ -26,7 +26,7 @@ class OAuth2Handler {
 class NetworkInceptor:RequestInterceptor,@unchecked Sendable  {
     public func adapt(_ urlRequest: URLRequest, for session: Alamofire.Session, completion: @escaping (Result<URLRequest, Error>) -> Void) {
         var resurlRequest = urlRequest
-        resurlRequest.setValue("FNkUXwPgGX35tAtEcFRjFGYNPxlSq74thfNYDiiZr7M7DOaF6KavLsX4", forHTTPHeaderField: "Authorization")
+        resurlRequest.setValue("Put your Api here", forHTTPHeaderField: "Authorization")
         completion(.success(resurlRequest))
     }
     
